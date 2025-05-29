@@ -1,0 +1,556 @@
+/* نظام إدارة الطلاب - التصميم الرئيسي */
+
+:root {
+    /* الألوان الأساسية */
+    --primary: 210 100% 50%; /* #007BFF */
+    --primary-dark: 210 100% 40%; /* #0056B3 */
+    --secondary: 108 39% 49%; /* #6C757D */
+    --success: 142 76% 36%; /* #28A745 */
+    --danger: 354 70% 54%; /* #DC3545 */
+    --warning: 45 100% 51%; /* #FFC107 */
+    --info: 188 78% 41%; /* #17A2B8 */
+    --light: 210 17% 98%; /* #F8F9FA */
+    --dark: 210 11% 15%; /* #212529 */
+    
+    /* الخلفيات */
+    --background: 210 11% 98%; /* #F5F7FA */
+    --surface: 0 0% 100%; /* #FFFFFF */
+    --card-shadow: 210 14% 89%; /* #E3E6EA */
+    
+    /* النصوص */
+    --text-primary: 210 11% 15%; /* #212529 */
+    --text-secondary: 210 7% 46%; /* #6C757D */
+    --text-muted: 210 7% 56%; /* #868E96 */
+    
+    /* الحدود */
+    --border-color: 210 14% 89%; /* #DEE2E6 */
+    --border-radius: 0.375rem;
+    
+    /* المسافات */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 3rem;
+    
+    /* الظلال */
+    --shadow-sm: 0 0.125rem 0.25rem hsla(210, 7%, 46%, 0.075);
+    --shadow-md: 0 0.5rem 1rem hsla(210, 7%, 46%, 0.15);
+    --shadow-lg: 0 1rem 3rem hsla(210, 7%, 46%, 0.175);
+}
+
+/* الخطوط والتوجيه */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    direction: rtl;
+    text-align: right;
+    background-color: hsl(var(--background));
+    color: hsl(var(--text-primary));
+    line-height: 1.6;
+}
+
+/* إعادة تعيين Bootstrap للعربية */
+.navbar-nav {
+    flex-direction: row-reverse;
+}
+
+.navbar-brand {
+    margin-left: 0;
+    margin-right: var(--spacing-md);
+}
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+/* البطاقات والمكونات */
+.card {
+    border: 1px solid hsl(var(--border-color));
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease-in-out;
+    background-color: hsl(var(--surface));
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    background-color: hsl(var(--light));
+    border-bottom: 1px solid hsl(var(--border-color));
+    font-weight: 600;
+}
+
+/* الأزرار */
+.btn {
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-primary {
+    background-color: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+}
+
+.btn-primary:hover {
+    background-color: hsl(var(--primary-dark));
+    border-color: hsl(var(--primary-dark));
+}
+
+.btn-success {
+    background-color: hsl(var(--success));
+    border-color: hsl(var(--success));
+}
+
+.btn-danger {
+    background-color: hsl(var(--danger));
+    border-color: hsl(var(--danger));
+}
+
+.btn-warning {
+    background-color: hsl(var(--warning));
+    border-color: hsl(var(--warning));
+    color: hsl(var(--text-primary));
+}
+
+.btn-info {
+    background-color: hsl(var(--info));
+    border-color: hsl(var(--info));
+}
+
+/* النماذج */
+.form-control, .form-select {
+    border: 1px solid hsl(var(--border-color));
+    border-radius: var(--border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 0.2rem hsla(var(--primary), 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* الجداول */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table th {
+    background-color: hsl(var(--light));
+    border-bottom: 2px solid hsl(var(--border-color));
+    font-weight: 600;
+}
+
+.table td {
+    border-bottom: 1px solid hsl(var(--border-color));
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: hsla(var(--light), 0.5);
+}
+
+/* الشارات */
+.badge {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.badge.bg-success {
+    background-color: hsl(var(--success)) !important;
+}
+
+.badge.bg-danger {
+    background-color: hsl(var(--danger)) !important;
+}
+
+.badge.bg-warning {
+    background-color: hsl(var(--warning)) !important;
+    color: hsl(var(--text-primary)) !important;
+}
+
+.badge.bg-info {
+    background-color: hsl(var(--info)) !important;
+}
+
+.badge.bg-secondary {
+    background-color: hsl(var(--secondary)) !important;
+}
+
+/* الإشعارات */
+.alert {
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: hsla(var(--success), 0.1);
+    color: hsl(var(--success));
+    border-right: 4px solid hsl(var(--success));
+}
+
+.alert-danger {
+    background-color: hsla(var(--danger), 0.1);
+    color: hsl(var(--danger));
+    border-right: 4px solid hsl(var(--danger));
+}
+
+.alert-warning {
+    background-color: hsla(var(--warning), 0.1);
+    color: hsl(var(--text-primary));
+    border-right: 4px solid hsl(var(--warning));
+}
+
+.alert-info {
+    background-color: hsla(var(--info), 0.1);
+    color: hsl(var(--info));
+    border-right: 4px solid hsl(var(--info));
+}
+
+/* التنقل */
+.navbar {
+    box-shadow: var(--shadow-sm);
+    background-color: hsl(var(--surface)) !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: hsl(var(--primary)) !important;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: hsl(var(--text-secondary)) !important;
+    transition: color 0.15s ease-in-out;
+}
+
+.nav-link:hover {
+    color: hsl(var(--primary)) !important;
+}
+
+.nav-link.active {
+    color: hsl(var(--primary)) !important;
+    font-weight: 600;
+}
+
+/* الشريط الجانبي */
+.sidebar {
+    background-color: hsl(var(--surface));
+    border-left: 1px solid hsl(var(--border-color));
+    min-height: calc(100vh - 76px);
+    padding: var(--spacing-lg);
+}
+
+.sidebar .nav-link {
+    color: hsl(var(--text-secondary));
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xs);
+    transition: all 0.15s ease-in-out;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background-color: hsla(var(--primary), 0.1);
+    color: hsl(var(--primary));
+}
+
+.sidebar .nav-link i {
+    margin-left: var(--spacing-sm);
+    width: 20px;
+    text-align: center;
+}
+
+/* الإحصائيات */
+.stats-card {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+    color: white;
+    border: none;
+    border-radius: calc(var(--border-radius) * 2);
+}
+
+.stats-card.success {
+    background: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 30%));
+}
+
+.stats-card.warning {
+    background: linear-gradient(135deg, hsl(var(--warning)), hsl(45 100% 45%));
+    color: hsl(var(--text-primary));
+}
+
+.stats-card.danger {
+    background: linear-gradient(135deg, hsl(var(--danger)), hsl(354 70% 48%));
+}
+
+.stats-card .stats-icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
+}
+
+.stats-card .stats-number {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.stats-card .stats-label {
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* المخططات */
+.chart-container {
+    position: relative;
+    height: 400px;
+    background-color: hsl(var(--surface));
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+}
+
+/* الصور الشخصية */
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid hsl(var(--border-color));
+}
+
+.profile-image-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* التمرير المخصص */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--light));
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--border-color));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--secondary));
+}
+
+/* الحالات الفارغة */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: hsl(var(--text-muted));
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.5;
+}
+
+.empty-state h5 {
+    color: hsl(var(--text-secondary));
+    margin-bottom: var(--spacing-sm);
+}
+
+/* التحميل */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid hsla(var(--primary), 0.3);
+    border-radius: 50%;
+    border-top-color: hsl(var(--primary));
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* الطباعة */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid hsl(var(--border-color));
+    }
+    
+    .btn {
+        display: none;
+    }
+}
+
+/* الاستجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    
+    .stats-card .stats-number {
+        font-size: 1.5rem;
+    }
+    
+    .stats-card .stats-icon {
+        font-size: 2rem;
+    }
+    
+    .table-responsive {
+        border-radius: var(--border-radius);
+    }
+    
+    .card {
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+/* حالات الحضور */
+.attendance-present {
+    background-color: hsla(var(--success), 0.1);
+    color: hsl(var(--success));
+    border-right: 3px solid hsl(var(--success));
+}
+
+.attendance-absent {
+    background-color: hsla(var(--danger), 0.1);
+    color: hsl(var(--danger));
+    border-right: 3px solid hsl(var(--danger));
+}
+
+.attendance-late {
+    background-color: hsla(var(--warning), 0.1);
+    color: hsl(var(--text-primary));
+    border-right: 3px solid hsl(var(--warning));
+}
+
+.attendance-excused {
+    background-color: hsla(var(--info), 0.1);
+    color: hsl(var(--info));
+    border-right: 3px solid hsl(var(--info));
+}
+
+/* حالات الدفع */
+.payment-paid {
+    color: hsl(var(--success));
+    font-weight: 600;
+}
+
+.payment-pending {
+    color: hsl(var(--warning));
+    font-weight: 600;
+}
+
+.payment-partial {
+    color: hsl(var(--info));
+    font-weight: 600;
+}
+
+/* الدرجات */
+.grade-excellent {
+    background-color: hsla(var(--success), 0.1);
+    color: hsl(var(--success));
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+}
+
+.grade-good {
+    background-color: hsla(var(--info), 0.1);
+    color: hsl(var(--info));
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+}
+
+.grade-average {
+    background-color: hsla(var(--warning), 0.1);
+    color: hsl(var(--text-primary));
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+}
+
+.grade-poor {
+    background-color: hsla(var(--danger), 0.1);
+    color: hsl(var(--danger));
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+}
+
+/* تحسينات إضافية */
+.text-primary { color: hsl(var(--primary)) !important; }
+.text-secondary { color: hsl(var(--secondary)) !important; }
+.text-success { color: hsl(var(--success)) !important; }
+.text-danger { color: hsl(var(--danger)) !important; }
+.text-warning { color: hsl(var(--warning)) !important; }
+.text-info { color: hsl(var(--info)) !important; }
+.text-muted { color: hsl(var(--text-muted)) !important; }
+
+.bg-primary { background-color: hsl(var(--primary)) !important; }
+.bg-secondary { background-color: hsl(var(--secondary)) !important; }
+.bg-success { background-color: hsl(var(--success)) !important; }
+.bg-danger { background-color: hsl(var(--danger)) !important; }
+.bg-warning { background-color: hsl(var(--warning)) !important; }
+.bg-info { background-color: hsl(var(--info)) !important; }
+.bg-light { background-color: hsl(var(--light)) !important; }
+
+/* تأثيرات التفاعل */
+.interactive-card {
+    cursor: pointer;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.interactive-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* رسوم متحركة للتحميل */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* تحسينات الطباعة */
+@page {
+    margin: 1in;
+}
+
+@media print {
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    .page-break {
+        page-break-before: always;
+    }
+    
+    .no-page-break {
+        page-break-inside: avoid;
+    }
+}
